@@ -3,7 +3,7 @@
 A modern, performance-optimized redesign of the PropSoch landing page built with React.js and CSS.
 
 ## 🚀 Live Demo
-[Deployed Site Link]
+https://propsoch-kappa.vercel.app/
 
 ## 📊 Lighthouse Scores Comparison
 
