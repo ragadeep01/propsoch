@@ -76,14 +76,14 @@ Made the testimonials section intuitive to navigate - you can swipe on mobile or
 ```
 propsoch-redesign/
 ├── public/
-│   └── stage1-6.mp4      # Journey section videos
+│   └── stage1-6.mp4     # Journey section videos
 ├── src/
 │   ├── components/
-│   │   ├── Navbar/       # Top navigation with dropdowns
-│   │   ├── Hero/         # City selector, YouTube video, stats
-│   │   ├── Journey/      # 6-stage journey with videos
-│   │   ├── Testimonials/ # Auto-advancing carousel with swipe
-│   │   └── Footer/       # Links, social, legal info
+│   │   ├── Navbar/       
+│   │   ├── Hero/        
+│   │   ├── Journey/      
+│   │   ├── Testimonials/ 
+│   │   └── Footer/      
 │   ├── App.jsx
 │   ├── App.css
 │   └── index.css
@@ -107,19 +107,16 @@ npm run build
 
 ## 📝 Key Features
 
-- ✅ Responsive design (mobile + desktop)
-- ✅ YouTube lazy loading (facade pattern)
+- ✅ Responsive design 
+- ✅ lazy loading 
 - ✅ Auto-detect user location
 - ✅ City dropdown selector
 - ✅ Testimonials with swipe/drag scroll
 - ✅ Journey videos load on-demand
-- ✅ ARIA labels for accessibility
-- ✅ Intersection Observer for smart loading
+
 
 ---
 
 ## 👤 Author
 [Ragadeep Pippalla]
 
-## 📄 License
-This project is for educational/assessment purposes.
