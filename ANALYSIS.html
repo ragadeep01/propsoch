@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PropSoch Landing Page Analysis - Part 1</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.7;
+      color: #1a1a2e;
+      background: #fff;
+      padding: 60px 80px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    @media print {
+      body {
+        padding: 40px;
+      }
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 50px;
+      padding-bottom: 30px;
+      border-bottom: 3px solid #FF6B35;
+    }
+    
+    .header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 8px;
+    }
+    
+    .header .subtitle {
+      font-size: 18px;
+      color: #FF6B35;
+      font-weight: 600;
+    }
+    
+    .header .author {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin: 40px 0 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #eee;
+    }
+    
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #FF6B35;
+      margin: 30px 0 15px;
+    }
+    
+    p {
+      margin-bottom: 15px;
+      color: #333;
+    }
+    
+    .scores-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      font-size: 15px;
+    }
+    
+    .scores-table th {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 14px 20px;
+      text-align: left;
+      font-weight: 600;
+    }
+    
+    .scores-table td {
+      padding: 14px 20px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .scores-table tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    
+    .score-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    
+    .score-green { background: #d4edda; color: #155724; }
+    .score-orange { background: #fff3cd; color: #856404; }
+    .score-red { background: #f8d7da; color: #721c24; }
+    
+    .issue-card {
+      background: #f8f9fa;
+      border-left: 4px solid #FF6B35;
+      padding: 25px;
+      margin: 25px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .issue-card h3 {
+      margin-top: 0;
+      color: #1a1a2e;
+    }
+    
+    .issue-card .problem {
+      background: #fff;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 15px 0;
+      border: 1px solid #eee;
+    }
+    
+    .issue-card .problem strong {
+      color: #dc3545;
+    }
+    
+    .issue-card .solution {
+      background: #fff;
+      padding: 15px;
+      border-radius: 6px;
+      border: 1px solid #eee;
+    }
+    
+    .issue-card .solution strong {
+      color: #28a745;
+    }
+    
+    .issue-card ul {
+      margin: 10px 0 0 20px;
+    }
+    
+    .issue-card li {
+      margin: 8px 0;
+      color: #444;
+    }
+    
+    .bottom-line {
+      background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%);
+      color: #fff;
+      padding: 35px;
+      border-radius: 12px;
+      margin-top: 40px;
+    }
+    
+    .bottom-line h2 {
+      color: #FF6B35;
+      border-bottom: none;
+      margin-top: 0;
+    }
+    
+    .bottom-line p {
+      color: #ddd;
+    }
+    
+    .bottom-line ol {
+      margin: 20px 0 0 20px;
+    }
+    
+    .bottom-line li {
+      margin: 10px 0;
+      color: #fff;
+    }
+    
+    .bottom-line li strong {
+      color: #FF6B35;
+    }
+    
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    
+    .comparison-table th,
+    .comparison-table td {
+      padding: 12px 15px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+    
+    .comparison-table th {
+      background: #f5f5f5;
+      font-weight: 600;
+    }
+    
+    .footer {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      text-align: center;
+      color: #888;
+      font-size: 12px;
+    }
+    
+    @media print {
+      .issue-card {
+        break-inside: avoid;
+      }
+      .bottom-line {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>PropSoch Landing Page Analysis</h1>
+    <div class="subtitle">Analysis Document</div>
+    <div class="author">
+      <strong>Prepared by:</strong> Ragadeep Pippalla<br>
+      <strong>Date:</strong> February 2026
+    </div>
+  </div>
+
+  <h2>Taking a Close Look at the Original Website</h2>
+  <p>I ran Lighthouse audits on the original PropSoch website to understand where it stands and what needs work. Here's what I found:</p>
+
+  <h3>Original Lighthouse Scores</h3>
+  <table class="scores-table">
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>Score</th>
+        <th>My Take</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Performance</strong></td>
+        <td><span class="score-badge score-orange">68</span></td>
+        <td>Page feels sluggish, especially on mobile</td>
+      </tr>
+      <tr>
+        <td><strong>Accessibility</strong></td>
+        <td><span class="score-badge score-orange">71</span></td>
+        <td>Some users will struggle to navigate</td>
+      </tr>
+      <tr>
+        <td><strong>Best Practices</strong></td>
+        <td><span class="score-badge score-red">50</span></td>
+        <td>Needs immediate attention</td>
+      </tr>
+      <tr>
+        <td><strong>SEO</strong></td>
+        <td><span class="score-badge score-green">100</span></td>
+        <td>Solid foundation here</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>5 Key Issues I Spotted (And How I'd Fix Them)</h2>
+
+  <div class="issue-card">
+    <h3>1. The Page Takes Too Long to Feel Ready</h3>
+    <div class="problem">
+      <strong>What's happening:</strong> When you open the site, everything tries to load at once - large images, fonts, videos, and scripts. The Journey section loads all 6 stage videos upfront even though the user can only view one at a time. The browser is juggling too many things at once. The page appears but doesn't feel interactive for a few seconds.
+    </div>
+    <div class="solution">
+      <strong>The fix:</strong>
+      <ul>
+        <li>Optimize and compress images before loading</li>
+        <li>Lazy load anything that's below the fold (not visible on first screen)</li>
+        <li>Load videos on-demand - only fetch the video when that stage is selected</li>
+        <li>Use Intersection Observer to detect when sections enter the viewport</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="issue-card">
+    <h3>2. Not Everyone Can Use This Site Easily</h3>
+    <div class="problem">
+      <strong>What's happening:</strong> If you're using a screen reader or navigating with a keyboard, this site becomes hard to understand. Buttons don't announce what they do and some text-to-background color combos can be made better.
+    </div>
+    <div class="solution">
+      <strong>The fix:</strong>
+      <ul>
+        <li>Add <code>aria-label</code> to buttons and interactive elements</li>
+        <li>Use semantic HTML tags like <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code></li>
+        <li>Improve color contrast ratios</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="issue-card">
+    <h3>3. Mobile Experience Needs Some Love</h3>
+    <div class="problem">
+      <strong>What's happening:</strong> On phones, buttons are too small to tap comfortably. The layout jumps around as images load. There's room to make the mobile experience feel as polished as desktop.
+    </div>
+    <div class="solution">
+      <strong>The fix:</strong>
+      <ul>
+        <li>Make tap targets larger for easier interaction</li>
+        <li>Add <code>width</code> and <code>height</code> attributes to images so the browser reserves space before loading</li>
+        <li>Use CSS Grid and Flexbox for layouts that adapt naturally</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="issue-card">
+    <h3>4. Content Could Be More Scannable</h3>
+    <div class="problem">
+      <strong>What's happening:</strong> There's a lot of valuable information, but it's presented in dense blocks. Some headings blend in rather than guide the eye. Users scanning the page might miss key points.
+    </div>
+    <table class="comparison-table">
+      <tr>
+        <th>Current</th>
+        <th>Improved Version</th>
+      </tr>
+      <tr>
+        <td>Slightly generic headline</td>
+        <td>Benefit-focused headline</td>
+      </tr>
+      <tr>
+        <td>Slightly busy design</td>
+        <td>Cleaner, premium layout</td>
+      </tr>
+    </table>
+    <div class="solution">
+      <strong>The fix:</strong>
+      <ul>
+        <li>Break up long text into bite-sized chunks with clear headings</li>
+        <li>Create visual hierarchy - make important things stand out</li>
+        <li>Add breathing room between sections</li>
+        <li>Use concise, impactful copy that communicates quickly</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="issue-card">
+    <h3>5. Interactive Elements Feel Static</h3>
+    <div class="problem">
+      <strong>What's happening:</strong> The journey section loads all videos at once regardless of which stage the user is viewing. Testimonials are displayed in a fixed layout without easy navigation between them. Users can't intuitively browse through content.
+    </div>
+    <div class="solution">
+      <strong>The fix:</strong>
+      <ul>
+        <li>Load videos on-demand when a stage is selected (saves bandwidth, improves speed)</li>
+        <li>Make testimonials scrollable with drag/swipe support</li>
+        <li>Add smooth transitions between states</li>
+        <li>Give users control over their browsing experience</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bottom-line">
+    <h2>Bottom Line</h2>
+    <p>PropSoch has built something genuinely valuable - a platform that helps homebuyers make smarter decisions with data-driven insights. The content is solid and the core value proposition is clear.</p>
+    <p>With a few focused improvements, the experience can match the quality of the product:</p>
+    <ol>
+      <li><strong>Speed optimizations</strong> - Load content smartly, not all at once</li>
+      <li><strong>Accessibility tweaks</strong> - Small changes that help everyone navigate easily</li>
+      <li><strong>Mobile polish</strong> - Refine the experience for phone users</li>
+      <li><strong>Visual refinements</strong> - Make great content even easier to scan</li>
+      <li><strong>Interactive enhancements</strong> - Let users explore content more naturally</li>
+    </ol>
+    <p style="margin-top: 20px; font-style: italic;">These aren't major overhauls - just thoughtful refinements that will elevate an already strong foundation.</p>
+  </div>
+
+  <div class="footer">
+    PropSoch Landing Page Redesign Assignment &bull; February 2026
+  </div>
+</body>
+</html>
